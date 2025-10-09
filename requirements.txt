@@ -1,0 +1,5 @@
+sqlalchemy
+fastapi
+beautifulsoup4
+selenium
+requests
