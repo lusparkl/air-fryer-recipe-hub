@@ -6,7 +6,7 @@ def nutrion_facts_to_int(fact: str):
     return int(fact.replace("g", ""))
 
 def pretiffy_strings_list(strings_list: list):
-    list_pretiffied = [i.text.replace("\n", "").replace(u"\xa0", u"").strip() for i in strings_list]
+    list_pretiffied = [i.text.replace("\n", "").replace(u"\xa0", u" ").strip() for i in strings_list]
     return list_pretiffied
 
 def time_details_in_minutes(raw_time: list):

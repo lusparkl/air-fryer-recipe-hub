@@ -6,7 +6,7 @@ class SpruceEats(Abstract_scraper):
         return self.soup.find("h1", class_ = "heading__title").text.strip()
 
     def get_description(self):
-        return self.soup.find("p", class_ = "comp mntl-sc-block mntl-sc-block-html").text.strip()
+        return self.soup.find("p", class_ = "heading__subtitle").text.strip()
     
     def get_time_details(self):
         recipe_time_details = self.soup.find("div", class_ = "project-meta__times-container")
@@ -29,7 +29,7 @@ class SpruceEats(Abstract_scraper):
         
         return pretiffy_strings_list(ingridients_raw)
 
-    def get_direcitons(self):
+    def get_directions(self):
         directions_container = self.soup.find("ol", class_ = "comp mntl-sc-block mntl-sc-block-startgroup mntl-sc-block-group--OL")
         directions_raw = directions_container.find_all("p", class_ = "comp mntl-sc-block mntl-sc-block-html")
 
@@ -42,3 +42,5 @@ class SpruceEats(Abstract_scraper):
             img = image.attrs["src"]
         except AttributeError:
             img = None
+        
+        return img

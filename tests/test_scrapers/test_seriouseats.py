@@ -22,7 +22,7 @@ def test_get_nutrion_facts(recipe):
     assert recipe.protein == 40
 
 def test_get_ingridients(recipe):
-    assert recipe.ingridients == ["2 cups (480 ml) whole buttermilk", "2 large eggs", "1/4 cup (60 ml) dill pickle brine, drained from 1 jar of pickles, plus pickle slices for serving", "2 tablespoons (30 ml)Louisiana-style hot sauce (such as Crystal)", "2 tablespoons (30 ml)honey", "4 tablespoons (36 g) Diamond Crystal kosher salt, divided, plus more to taste; for table salt, use half as much by volume or same weight", "4 small bone-in, skin-on chicken thighs (5 to 7 ounces; 141 to 198 g each)",
+    assert recipe.ingridients == ["2 cups (480 ml) whole buttermilk", "2 large eggs", "1/4 cup (60 ml) dill pickle brine, drained from 1 jar of pickles, plus pickle slices for serving", "2 tablespoons (30 ml) Louisiana-style hot sauce (such as Crystal)", "2 tablespoons (30 ml) honey", "4 tablespoons (36 g) Diamond Crystal kosher salt, divided, plus more to taste; for table salt, use half as much by volume or same weight", "4 small bone-in, skin-on chicken thighs (5 to 7 ounces; 141 to 198 g each)",
                                   "2 medium bone-in, skin-on chicken breast halves (about 1 pound; 454 g each)", "1 1/2 cups all purpose flour (6 3/4 ounces; 192 g)", "1 cup white rice flour (about 5 1/4 ounces; 150 g), see note", "1 tablespoon onion powder", "1 tablespoon granulated garlic", "2 teaspoons smoked paprika", "1 1/2 teaspoons baking powder", "1 teaspoon freshly ground black pepper", "2 tablespoons (30 ml) canola oil, divided", "Cooking spray"]
 
 def test_get_img(recipe):
