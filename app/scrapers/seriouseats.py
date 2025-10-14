@@ -1,17 +1,17 @@
-from _abstract import Abstract_scraper
-from _utils import nutrion_facts_to_int, pretiffy_strings_list, time_details_in_minutes
+from app.scrapers._abstract import Abstract_scraper
+from app.scrapers._utils import nutrion_facts_to_int, pretiffy_strings_list, time_details_in_minutes
 
 class SeriousEats(Abstract_scraper):
     def get_name(self):
         return self.soup.find("h1", class_ = "heading__title").text.strip()
 
     def get_description(self):
-        return self.soup.find("p", class_ = "comp mntl-sc-block mntl-sc-block-html").text.strip()
+        return self.soup.find("p", class_ = "heading__subtitle").text.strip()
     
     def get_time_details(self):
         recipe_time_details = self.soup.find("div", class_ = "project-meta__times-container")
         prep_time = recipe_time_details.find_all("span", class_ = "meta-text__data")[0].text
-        overall_time = recipe_time_details.find_all("span", class_ = "meta-text__data")[2].text
+        overall_time = recipe_time_details.find_all("span", class_ = "meta-text__data")[3].text
 
         return time_details_in_minutes([prep_time, overall_time])
 
@@ -29,7 +29,7 @@ class SeriousEats(Abstract_scraper):
         
         return pretiffy_strings_list(ingridients_raw)
 
-    def get_direcitons(self):
+    def get_directions(self):
         directions_container = self.soup.find("ol", class_ = "comp mntl-sc-block mntl-sc-block-startgroup mntl-sc-block-group--OL")
         directions_raw = directions_container.find_all("p", class_ = "comp mntl-sc-block mntl-sc-block-html")
 
@@ -42,3 +42,5 @@ class SeriousEats(Abstract_scraper):
             img = image.attrs["src"]
         except AttributeError:
             img = None
+
+        return img

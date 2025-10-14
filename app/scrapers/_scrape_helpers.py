@@ -1,11 +1,11 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
 import time
-from allrecipes import AllRecipes
-from eatingwell import EatingWell
-from seriouseats import SeriousEats
-from simplyrecipes import SimplyRecipies
-from spruceeats import SpruceEats
+from app.scrapers.allrecipes import AllRecipes
+from app.scrapers.eatingwell import EatingWell
+from app.scrapers.seriouseats import SeriousEats
+from app.scrapers.simplyrecipes import SimplyRecipies
+from app.scrapers.spruceeats import SpruceEats
 
 BASE_LINK = "https://www.myrecipes.com/search?q=air+fryer&offset="
 SUITABLE_WEBSITES = ["Allrecipes", "The Spruce Eats", "EatingWell", "Simply Recipes", "Serious Eats"]
@@ -13,12 +13,12 @@ options = webdriver.FirefoxOptions()
 options.add_argument("--headless")
 browser = webdriver.Firefox(options=options)
 
-def get_suitable_links(*, link: str = BASE_LINK, suitable_websites: list = SUITABLE_WEBSITES) -> list:
+def get_suitable_links(*, link: str = BASE_LINK, suitable_websites: list = SUITABLE_WEBSITES, MAX_OFFSET: int = 1000000) -> list:
     links_and_sources = []
     recipes_quantity = 24 # Assuming, that we have at least first pages with recipes
     offset = 0
     
-    while recipes_quantity == 24:
+    while recipes_quantity == 24 and offset <= MAX_OFFSET:
         browser.get(url=f"https://www.myrecipes.com/search?q=air+fryer&offset={offset}")
         time.sleep(5)
         html=browser.page_source
@@ -35,7 +35,7 @@ def get_suitable_links(*, link: str = BASE_LINK, suitable_websites: list = SUITA
             if from_site in suitable_websites:
                 links_and_sources.append((url, from_site))
         
-        return links_and_sources
+    return links_and_sources
 
 def scrape_recipe_based_on_source(*, url_and_source: tuple):
     url, source = url_and_source

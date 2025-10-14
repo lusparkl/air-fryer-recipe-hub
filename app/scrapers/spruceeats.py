@@ -1,5 +1,5 @@
-from _abstract import Abstract_scraper
-from _utils import nutrion_facts_to_int, pretiffy_strings_list, time_details_in_minutes
+from app.scrapers._abstract import Abstract_scraper
+from app.scrapers._utils import nutrion_facts_to_int, pretiffy_strings_list, time_details_in_minutes
 
 class SpruceEats(Abstract_scraper):
     def get_name(self):

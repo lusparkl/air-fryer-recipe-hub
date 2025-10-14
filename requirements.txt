@@ -3,3 +3,8 @@ fastapi
 beautifulsoup4
 selenium
 requests
+dotenv
+google-genai
+pytest
+pytest-mock
+lxml
