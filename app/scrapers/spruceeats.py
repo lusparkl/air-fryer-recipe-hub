@@ -11,9 +11,15 @@ class SpruceEats(Abstract_scraper):
     
     def get_time_details(self):
         recipe_time_details = self.soup.find("div", class_ = "project-meta__times-container")
-        prep_time = recipe_time_details.find_all("span", class_ = "meta-text__data")[0].text
-        overall_time = recipe_time_details.find_all("span", class_ = "meta-text__data")[2].text
-
+        all_time_data = recipe_time_details.find_all("span", class_ = "meta-text__data")
+        prep_time = all_time_data[0].text
+        if len(all_time_data) == 3:
+            overall_time = all_time_data[2].text
+        elif len(all_time_data) == 4:
+            overall_time = all_time_data[3].text
+        else:
+            raise ValueError("Didn't expect this quantity of time data about recipe")
+        
         return time_details_in_minutes([prep_time, overall_time])
 
     def get_nutrion_facts(self):

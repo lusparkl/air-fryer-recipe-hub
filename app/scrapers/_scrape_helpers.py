@@ -53,4 +53,3 @@ def scrape_recipe_based_on_source(*, url_and_source: tuple):
             return SeriousEats(url=url)
         case _:
             raise ValueError("Website from unsuitable source")
-            
