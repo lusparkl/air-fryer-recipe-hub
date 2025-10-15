@@ -5,7 +5,7 @@ import json
 
 client = genai.Client(api_key=GEMINI_API_KEY)
 
-def get_recipe_category(*, recipe_name: str, ingridients: list) -> list:
+def get_recipe_categories(*, recipe_name: str, ingridients: list) -> list:
     response = client.models.generate_content(
         model="gemini-2.5-flash",
         config=types.GenerateContentConfig(

@@ -1,5 +1,6 @@
 from app.scrapers._abstract import Abstract_scraper
 from app.scrapers._utils import nutrion_facts_to_int, pretiffy_strings_list, time_details_in_minutes
+from app.ai.api_client import get_recipe_categories
 
 class EatingWell(Abstract_scraper):
     def get_name(self):
@@ -34,6 +35,9 @@ class EatingWell(Abstract_scraper):
     def get_directions(self):
         directions_raw = self.soup.find_all("p", class_ = "comp mntl-sc-block mntl-sc-block-html")
         return pretiffy_strings_list(directions_raw)
+
+    def get_recipe_categories(self):
+        return get_recipe_categories(recipe_name=self.name, ingridients=self.ingridients)
 
     def get_img(self):
         try:

@@ -13,6 +13,7 @@ class Abstract_scraper():
         self.calories, self.fat, self.carbs, self.protein = self.get_nutrion_facts()
         self.ingridients = self.get_ingridients()
         self.directions = self.get_directions()
+        self.categories = self.get_categories()
         self.img = self.get_img()
 
     def get_name(self):
@@ -33,5 +34,8 @@ class Abstract_scraper():
     def get_direcitons(self):
         raise NotImplementedError("this should be implemented")
 
+    def get_categories():
+        raise NotImplementedError("this should be implemented")
+    
     def get_img(self):
         raise NotImplementedError("this should be implemented")
