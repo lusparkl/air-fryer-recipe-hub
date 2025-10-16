@@ -7,7 +7,10 @@ class SpruceEats(Abstract_scraper):
         return self.soup.find("h1", class_ = "heading__title").text.strip()
 
     def get_description(self):
-        return self.soup.find("p", class_ = "heading__subtitle").text.strip()
+        try:
+            return self.soup.find("p", class_ = "heading__subtitle").text.strip()
+        except AttributeError:
+            return None
     
     def get_time_details(self):
         recipe_time_details = self.soup.find("div", class_ = "project-meta__times-container")
@@ -43,7 +46,7 @@ class SpruceEats(Abstract_scraper):
         return pretiffy_strings_list(directions_raw)
 
     def get_recipe_categories(self):
-        return get_recipe_categories(recipe_name=self.name, ingridients=self.ingridients)
+        return None #Don't have api key yet
     
     def get_img(self):
         try:

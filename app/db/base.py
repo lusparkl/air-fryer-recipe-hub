@@ -1,8 +1,12 @@
-#Todo: move connection string to other file
+import os
+from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-engine = create_engine('mysql://root:SuperSecretDBPassword@localhost:3306/air_fryer_heaven', echo=True)
+load_dotenv()
+CONNECTION_STRING=os.getenv("CONNECTION_STRING")
+
+engine = create_engine(CONNECTION_STRING, echo=True)
 
 Base = declarative_base()
 

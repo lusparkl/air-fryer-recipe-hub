@@ -7,7 +7,10 @@ class AllRecipes(Abstract_scraper):
         return self.soup.find("h1", class_ = "article-heading text-headline-400").text.strip()
 
     def get_description(self):
-        return self.soup.find("p", class_ = "article-subheading text-utility-300").text.strip()
+        try:
+            return self.soup.find("p", class_ = "article-subheading text-utility-300").text.strip()
+        except AttributeError:
+            return None
     
     def get_time_details(self):
         recipe_time_details = self.soup.find_all("div", class_ = "mm-recipes-details__item")
@@ -37,7 +40,7 @@ class AllRecipes(Abstract_scraper):
         return pretiffy_strings_list(directions_raw)
 
     def get_recipe_categories(self):
-        return get_recipe_categories(recipe_name=self.name, ingridients=self.ingridients)
+        return None
     
     def get_img(self):
         try:

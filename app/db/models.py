@@ -1,12 +1,12 @@
-from sqlalchemy import Integer, String, Column, JSON
-from base import Base
+from sqlalchemy import Integer, String, Column, JSON, Text
+from app.db.base import Base
 
 class Recipe(Base):
     __tablename__="recipes"
     
     id = Column(Integer, primary_key=True)
-    name = Column(String(255), nullable=False)
-    description = Column(String(255), nullable=False)
+    name = Column(Text, nullable=False)
+    description = Column(Text, nullable=True)
     prep_time = Column(Integer, nullable=False)
     overall_time = Column(Integer, nullable=False)
     calories = Column(Integer, nullable=False)
@@ -15,5 +15,5 @@ class Recipe(Base):
     protein = Column(Integer, nullable=False)
     ingridients = Column(JSON, nullable=False)
     directions = Column(JSON, nullable=False)
-    image = Column(String(255), nullable=True)
-    categories = Column(JSON, nullable=False)
+    image = Column(Text, nullable=True)
+    categories = Column(JSON, nullable=True)
