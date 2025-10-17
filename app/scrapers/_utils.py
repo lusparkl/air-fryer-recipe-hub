@@ -9,26 +9,34 @@ def pretiffy_strings_list(strings_list: list):
     list_pretiffied = [i.text.replace("\n", "").replace(u"\xa0", u" ").strip() for i in strings_list]
     return list_pretiffied
 
-def time_details_in_minutes(raw_time: list):
+def time_details_in_minutes(raw_time: list) -> list[int]:
     result = []
     for time in raw_time:
         time = time.strip()
-        if ("hr" in time or "hrs" in time) and "mins" in time:
+        total_minutes = 0
+
+        # Handle days
+        if "day" in time:
+            day_split = time.split("day")
+            days = int(day_split[0].strip())
+            total_minutes += days * 24 * 60
+            time = day_split[1].strip() if len(day_split) > 1 else ""
+
+        # Handle hours
+        if "hr" in time or "hrs" in time:
             if "hrs" in time:
-                time_list_raw = time.split("hrs")
+                hr_split = time.split("hrs")
             else:
-                time_list_raw = time.split("hr")
-            time_list = [int(t.replace("mins", "").strip()) for t in time_list_raw if t.strip()]
-            if len(time_list) == 2:
-                result.append(time_list[0] * 60 + time_list[1])
-            else:
-                result.append(time_list[0])
-        elif "hr" in time or "hrs" in time:
-            t = int(time.replace("hrs", "").replace("hr", "").strip()) * 60
-            result.append(t)
-        elif "mins" in time:
-            t = int(time.replace("mins", "").strip())
-            result.append(t)
-        else:
-            result.append(0)
+                hr_split = time.split("hr")
+            hours = int(hr_split[0].strip())
+            total_minutes += hours * 60
+            time = hr_split[1].strip() if len(hr_split) > 1 else ""
+
+        # Handle minutes
+        if "mins" in time:
+            mins = int(time.replace("mins", "").strip())
+            total_minutes += mins
+
+        result.append(total_minutes if total_minutes > 0 else 0)
+
     return result

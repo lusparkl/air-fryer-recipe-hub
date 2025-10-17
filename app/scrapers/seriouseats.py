@@ -16,7 +16,9 @@ class SeriousEats(Abstract_scraper):
         recipe_time_details = self.soup.find("div", class_ = "project-meta__times-container")
         all_time_data = recipe_time_details.find_all("span", class_ = "meta-text__data")
         prep_time = all_time_data[0].text
-        if len(all_time_data) == 3:
+        if len(all_time_data) == 2:
+            overall_time = all_time_data[1].text
+        elif len(all_time_data) == 3:
             overall_time = all_time_data[2].text
         elif len(all_time_data) == 4:
             overall_time = all_time_data[3].text
