@@ -2,7 +2,8 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-GEMINI_API_KEY=os.getenv("GEMINI_API_KEY")
+OPENAI_API_KEY=os.getenv("OPENAI_API_KEY")
+model = "gpt-4.1-nano-2025-04-14"
 
 instruction = """You are an assistant that classifies air fryer recipes into cooking categories.
 
