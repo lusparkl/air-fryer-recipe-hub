@@ -12,4 +12,4 @@ def get_recipe_categories(*, recipe_name: str, ingridients: list) -> list:
         input=f"Recipe name: {recipe_name}, Ingredients: {ingridients}"
     )
 
-    return json.dumps(response.output_text)
+    return json.loads(response.output_text)

@@ -16,7 +16,7 @@ instruction = """You are an assistant that classifies air fryer recipes into coo
   "Potatoes", "Vegetables", "Pasta", "Rice", "Bread", "Cheese", "Tofu", "Mushrooms"]
 
   Rules:
-  - Return only a valid JSON array, for example: ["Chicken", "Crispy", "Snack"]
+  - Return only a valid JSON array, for example: ["Chicken", "Crispy", "Snack"], without any backslashes or ' or " outside the arr
   - Pick between 1 and 3 categories that best describe the recipe.
   - If the recipe does not clearly fit one of them, choose the closest reasonable match.
   - Do not include any explanations or extra text."""

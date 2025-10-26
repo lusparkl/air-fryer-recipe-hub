@@ -40,7 +40,7 @@ class EatingWell(Abstract_scraper):
         return pretiffy_strings_list(directions_raw)
 
     def get_recipe_categories(self):
-        return None #Don't have api key yet
+        return get_recipe_categories(recipe_name=self.name, ingridients=self.ingridients)
 
     def get_img(self):
         try:
